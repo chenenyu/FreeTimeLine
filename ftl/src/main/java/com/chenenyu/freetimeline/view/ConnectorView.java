@@ -12,8 +12,8 @@ import android.view.View;
  * Created by Cheney on 16/1/6.
  */
 public class ConnectorView extends View {
-    private Paint iconPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private Paint rootPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Paint linePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Paint togglePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint bottomPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint clearPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private ConnectorView.Type type;
@@ -24,21 +24,7 @@ public class ConnectorView extends View {
         SUCKER_TOP, // 顶部吸盘样式
         NORMAL_TOP, // 顶部普通样式
         NODE,  // 中间普通结点
-        BOTTOM; // 底部样式
-
-        Type() {
-        }
-    }
-
-    public void setType(ConnectorView.Type type) {
-        if (type != this.type) {
-            this.type = type;
-            if (this.cache != null) {
-                this.cache.recycle();
-                this.cache = null;
-            }
-            this.invalidate();
-        }
+        BOTTOM // 底部样式
     }
 
     public ConnectorView(Context context) {
@@ -58,12 +44,12 @@ public class ConnectorView extends View {
      * Default config.
      */
     private void init() {
-        iconPaint.setColor(FreeTimeLineUI.DEFAULT_LINE_COLOR);
-        rootPaint.setColor(FreeTimeLineUI.DEFAULT_ROOT_COLOR);
+        linePaint.setColor(FreeTimeLineUI.DEFAULT_LINE_COLOR);
+        togglePaint.setColor(FreeTimeLineUI.DEFAULT_TOGGLE_COLOR);
         bottomPaint.setColor(FreeTimeLineUI.DEFAULT_END_COLOR);
         clearPaint.setColor(0);
         clearPaint.setXfermode(FreeTimeLineUI.CLEAR_XFER_MODE);
-        this.type = Type.NORMAL_TOP;
+        this.type = Type.NODE;
     }
 
     @Override
@@ -82,35 +68,46 @@ public class ConnectorView extends View {
             float halfHeight = (float) height / 2.0F;
             float thirdWidth = (float) width / 3.0F;
             float strokeSize = FreeTimeLineUI.dpToPixel(4.0F, this.getResources());
-            iconPaint.setStrokeWidth(strokeSize);
-            rootPaint.setStrokeWidth(strokeSize);
+            linePaint.setStrokeWidth(strokeSize);
+            togglePaint.setStrokeWidth(strokeSize);
             switch (this.type.ordinal()) {
                 case 0: // SUCKER_TOP
                     float radiusClear = halfWidth - strokeSize / 2.0F;
-                    cacheCanvas.drawRect(0.0F, 0.0F, (float) width, radiusClear, rootPaint);
+                    cacheCanvas.drawRect(0.0F, 0.0F, (float) width, radiusClear, togglePaint);
                     cacheCanvas.drawCircle(0.0F, radiusClear, radiusClear, clearPaint);
                     cacheCanvas.drawCircle((float) width, radiusClear, radiusClear, clearPaint);
-                    cacheCanvas.drawLine(halfWidth, 0.0F, halfWidth, halfHeight, rootPaint);
-                    cacheCanvas.drawLine(halfWidth, halfHeight, halfWidth, (float) height, iconPaint);
-                    cacheCanvas.drawCircle(halfWidth, halfHeight, halfWidth, iconPaint);
+                    cacheCanvas.drawLine(halfWidth, 0.0F, halfWidth, halfHeight, togglePaint);
+                    cacheCanvas.drawLine(halfWidth, halfHeight, halfWidth, (float) height, linePaint);
+                    cacheCanvas.drawCircle(halfWidth, halfHeight, halfWidth, linePaint);
                     cacheCanvas.drawCircle(halfWidth, halfHeight, thirdWidth, clearPaint);
                     break;
                 case 1: // NORMAL_TOP
-                    cacheCanvas.drawLine(halfWidth, halfHeight, halfWidth, height, iconPaint);
+                    cacheCanvas.drawLine(halfWidth, halfHeight, halfWidth, height, linePaint);
                     cacheCanvas.drawCircle(halfWidth, halfHeight, thirdWidth, bottomPaint);
                     break;
                 case 2: // NODE
-                    cacheCanvas.drawLine(halfWidth, 0.0F, halfWidth, (float) height, iconPaint);
-                    cacheCanvas.drawCircle(halfWidth, halfHeight, halfWidth, iconPaint);
+                    cacheCanvas.drawLine(halfWidth, 0.0F, halfWidth, (float) height, linePaint);
+                    cacheCanvas.drawCircle(halfWidth, halfHeight, halfWidth, linePaint);
                     cacheCanvas.drawCircle(halfWidth, halfHeight, thirdWidth, clearPaint);
                     break;
                 default: // BOTTOM
-                    cacheCanvas.drawLine(halfWidth, 0.0F, halfWidth, halfHeight, iconPaint);
+                    cacheCanvas.drawLine(halfWidth, 0.0F, halfWidth, halfHeight, linePaint);
                     cacheCanvas.drawCircle(halfWidth, halfHeight, thirdWidth, bottomPaint);
             }
         }
 
         canvas.drawBitmap(this.cache, 0.0F, 0.0F, null);
+    }
+
+    public void setType(ConnectorView.Type type) {
+        if (type != this.type) {
+            this.type = type;
+            if (this.cache != null) {
+                this.cache.recycle();
+                this.cache = null;
+            }
+            this.invalidate();
+        }
     }
 
 }

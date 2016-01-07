@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:minHeight="48dp"
+              android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/__ftl_row_left_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="8dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:maxWidth="90dp"
+        android:textSize="12sp"
+        android:visibility="gone"
+        tools:text="2015年06月"
+        tools:visibility="visible"/>
+
+    <com.chenenyu.freetimeline.view.ConnectorView
+        android:id="@+id/__ftl_row_connector"
+        android:layout_width="16dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="8dp"/>
+
+    <TextView
+        android:id="@+id/__ftl_row_middle_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"/>
+
+    <com.chenenyu.freetimeline.view.ToggleView
+        android:id="@+id/__ftl_row_toggle"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="16dp"/>
+
+</LinearLayout>

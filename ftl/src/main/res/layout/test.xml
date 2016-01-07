@@ -9,7 +9,7 @@
         android:layout_height="200dp"
         android:layout_marginLeft="50dp"/>
 
-    <com.chenenyu.freetimeline.view.FoldableView
+    <com.chenenyu.freetimeline.view.ToggleView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_margin="50dp"/>

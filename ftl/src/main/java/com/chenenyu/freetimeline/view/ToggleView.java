@@ -1,30 +1,28 @@
 package com.chenenyu.freetimeline.view;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * Foldable View(i.e. plus sign and minus sign).
+ * Toggle View(i.e. plus sign and minus sign).
  * Created by Cheney on 16/1/6.
  */
-public class FoldableView extends View {
+public class ToggleView extends View {
     private static final Paint iconPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private boolean opened;
 
-    public FoldableView(Context context) {
+    public ToggleView(Context context) {
         this(context, null);
     }
 
-    public FoldableView(Context context, AttributeSet attrs) {
+    public ToggleView(Context context, AttributeSet attrs) {
         super(context, attrs, 0);
     }
 
-    public FoldableView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ToggleView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
