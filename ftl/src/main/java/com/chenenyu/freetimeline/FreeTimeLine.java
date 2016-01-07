@@ -28,7 +28,7 @@ public class FreeTimeLine extends FrameLayout {
     private int LINE_COLOR;
     private int CIRCLE_COLOR;
     private int END_COLOR;
-    private int FOLDABLE_COLOR;
+    private int TOGGLE_COLOR;
     private int TOP_TYPE;
 
     public FreeTimeLine(Context context) {
@@ -45,7 +45,7 @@ public class FreeTimeLine extends FrameLayout {
         LINE_COLOR = a.getColor(R.styleable.FreeTimeLine_line_color, FreeTimeLineUI.DEFAULT_LINE_COLOR);
         CIRCLE_COLOR = a.getColor(R.styleable.FreeTimeLine_circle_color, FreeTimeLineUI.DEFAULT_CIRCLE_COLOR);
         END_COLOR = a.getColor(R.styleable.FreeTimeLine_bottom_color, FreeTimeLineUI.DEFAULT_END_COLOR);
-        FOLDABLE_COLOR = a.getColor(R.styleable.FreeTimeLine_toggle_color, FreeTimeLineUI.DEFAULT_FOLDABLE_COLOR);
+        TOGGLE_COLOR = a.getColor(R.styleable.FreeTimeLine_toggle_color, FreeTimeLineUI.DEFAULT_TOGGLE_COLOR);
         TOP_TYPE = a.getInt(R.styleable.FreeTimeLine_top_type, ConnectorView.Type.NORMAL_TOP.ordinal());
         a.recycle();
 

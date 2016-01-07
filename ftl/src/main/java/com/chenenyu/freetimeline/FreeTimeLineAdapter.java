@@ -106,7 +106,7 @@ public class FreeTimeLineAdapter extends BaseAdapter {
             return "";
         }
         if (opened && !TextUtils.isEmpty(element.getChild())) {
-            return "<font color=\'#80000000\'>" + element.getParent() + "</font><br><font color=\'#80FFFFFF\'>"
+            return "<font color=\'#2E2C2C\'>" + element.getParent() + "</font><br><font color=\'#3B3939\'>"
                     + element.getChild() + "</font>";
         } else {
             return element.getParent();

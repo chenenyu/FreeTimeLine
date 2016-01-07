@@ -8,7 +8,6 @@ import android.util.DisplayMetrics;
 public class FreeTimeLineUI {
     public static final int DEFAULT_LINE_COLOR = 0xFFD3D3D3;
     public static final int DEFAULT_CIRCLE_COLOR = 0xFFD3D3D3;
-    public static final int DEFAULT_FOLDABLE_COLOR = 0xFFD3D3D3;
     public static final int DEFAULT_TOGGLE_COLOR = 0xFF4EAAB2;
     public static final int DEFAULT_END_COLOR = 0xFF7B593B;
     static final PorterDuffXfermode CLEAR_XFER_MODE;

@@ -11,7 +11,7 @@ import android.view.View;
  * Created by Cheney on 16/1/6.
  */
 public class ToggleView extends View {
-    private static final Paint iconPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private static final Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private boolean opened;
 
     public ToggleView(Context context) {
@@ -19,7 +19,7 @@ public class ToggleView extends View {
     }
 
     public ToggleView(Context context, AttributeSet attrs) {
-        super(context, attrs, 0);
+        this(context, attrs, 0);
     }
 
     public ToggleView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -29,8 +29,8 @@ public class ToggleView extends View {
 
     private void init() {
         float strokeSize = FreeTimeLineUI.dpToPixel(2.0F, this.getResources());
-        iconPaint.setStrokeWidth(strokeSize);
-        iconPaint.setColor(FreeTimeLineUI.DEFAULT_FOLDABLE_COLOR);
+        mPaint.setStrokeWidth(strokeSize);
+        mPaint.setColor(FreeTimeLineUI.DEFAULT_TOGGLE_COLOR);
     }
 
     protected void onDraw(Canvas canvas) {
@@ -39,10 +39,10 @@ public class ToggleView extends View {
         int halfHeight = height / 2;
         int halfWidth = width / 2;
         if (this.opened) {
-            canvas.drawLine(0.0F, (float) halfHeight, (float) width, (float) halfHeight, iconPaint);
+            canvas.drawLine(0.0F, (float) halfHeight, (float) width, (float) halfHeight, mPaint);
         } else {
-            canvas.drawLine(0.0F, (float) halfHeight, (float) width, (float) halfHeight, iconPaint);
-            canvas.drawLine((float) halfWidth, 0.0F, (float) halfWidth, (float) height, iconPaint);
+            canvas.drawLine(0.0F, (float) halfHeight, (float) width, (float) halfHeight, mPaint);
+            canvas.drawLine((float) halfWidth, 0.0F, (float) halfWidth, (float) height, mPaint);
         }
     }
 
