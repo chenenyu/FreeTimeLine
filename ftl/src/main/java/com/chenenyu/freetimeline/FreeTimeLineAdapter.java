@@ -28,7 +28,7 @@ public class FreeTimeLineAdapter extends BaseAdapter {
     private final boolean SHOW_TOGGLE;
     private List<FreeTimeLineElement> mElements = Collections.emptyList();
 
-    public FreeTimeLineAdapter(Context context, List<FreeTimeLineElement> elements) {
+    public FreeTimeLineAdapter(List<FreeTimeLineElement> elements) {
         mElements = elements;
         opened = new boolean[mElements.size()];
         SHOW_LEFT = showLeft();
@@ -69,11 +69,11 @@ public class FreeTimeLineAdapter extends BaseAdapter {
 
         if (position == 0) {
             // TODO: 16/1/7 判断是普通样式还是吸盘样式
-            connectorView.setType(ConnectorView.Type.NORMAL_TOP);
+            connectorView.setType(ConnectorView.TOP_HOLLOW);
         } else if (position == mElements.size() - 1) {
-            connectorView.setType(ConnectorView.Type.BOTTOM);
+            connectorView.setType(ConnectorView.BOTTOM_SOLID);
         } else {
-            connectorView.setType(ConnectorView.Type.NODE);
+            connectorView.setType(ConnectorView.NODE_HOLLOW);
         }
 
         if (SHOW_TOGGLE) {
@@ -96,6 +96,10 @@ public class FreeTimeLineAdapter extends BaseAdapter {
         return false;
     }
 
+    /**
+     * Expand or collapse row.
+     * @param position clicked item.
+     */
     public void toggleRow(int position) {
         this.opened[position] = !this.opened[position];
         notifyDataSetChanged();

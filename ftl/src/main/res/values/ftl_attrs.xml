@@ -8,7 +8,6 @@
         <attr name="top_type" format="enum">
             <enum name="sucker" value="0"/>
             <enum name="normal" value="1"/>
-            <enum name="node" value="2"/>
         </attr>
     </declare-styleable>
 </resources>

@@ -46,7 +46,7 @@ public class FreeTimeLine extends FrameLayout {
         CIRCLE_COLOR = a.getColor(R.styleable.FreeTimeLine_circle_color, FreeTimeLineUI.DEFAULT_CIRCLE_COLOR);
         END_COLOR = a.getColor(R.styleable.FreeTimeLine_bottom_color, FreeTimeLineUI.DEFAULT_END_COLOR);
         TOGGLE_COLOR = a.getColor(R.styleable.FreeTimeLine_toggle_color, FreeTimeLineUI.DEFAULT_TOGGLE_COLOR);
-        TOP_TYPE = a.getInt(R.styleable.FreeTimeLine_top_type, ConnectorView.Type.NORMAL_TOP.ordinal());
+        TOP_TYPE = a.getInt(R.styleable.FreeTimeLine_top_type, ConnectorView.TOP_SOLID);
         a.recycle();
 
         mContent = new ListView(context);
@@ -68,7 +68,7 @@ public class FreeTimeLine extends FrameLayout {
         this.mElements = elements;
         if (mElements != null) {
             if (mAdapter == null) {
-                mAdapter = new FreeTimeLineAdapter(getContext(), mElements);
+                mAdapter = new FreeTimeLineAdapter(mElements);
                 // custom attrs
             }
         }

@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         List<FreeTimeLineElement> elements = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             FreeTimeLineElement element = new FreeTimeLineElement();
-            element.setLeft("2016年1月7日");
+//            element.setLeft("2016年1月7日");
             element.setParent("parent" + i);
             element.setChild("childchildchildchildchildchildchildchildchildchildchildchild" + i);
             elements.add(element);
