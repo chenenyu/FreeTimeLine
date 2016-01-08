@@ -1,4 +1,4 @@
-package com.chenenyu.freetimeline.view;
+package com.chenenyu.freetimeline.internal;
 
 import android.content.res.Resources;
 import android.graphics.PorterDuff;
@@ -7,10 +7,19 @@ import android.util.DisplayMetrics;
 
 public class FreeTimeLineUI {
     public static final int DEFAULT_LINE_COLOR = 0xFFD3D3D3;
-    public static final int DEFAULT_CIRCLE_COLOR = 0xFFD3D3D3;
+    public static final int DEFAULT_SOLID_COLOR = 0xFF7B593B;
+    public static final int DEFAULT_HOLLOW_COLOR = 0xFFD3D3D3;
     public static final int DEFAULT_TOGGLE_COLOR = 0xFF4EAAB2;
-    public static final int DEFAULT_END_COLOR = 0xFF7B593B;
     static final PorterDuffXfermode CLEAR_XFER_MODE;
+
+    public static final int TOP_SUCKER = 0;
+    public static final int TOP_SOLID = 1;
+    public static final int TOP_HOLLOW = 2;
+
+    public static final int NODE_HOLLOW = 10;
+
+    public static final int BOTTOM_SOLID = 20;
+
 
     private FreeTimeLineUI() {
         throw new AssertionError();

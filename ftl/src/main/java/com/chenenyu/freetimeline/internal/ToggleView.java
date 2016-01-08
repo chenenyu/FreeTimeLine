@@ -1,4 +1,4 @@
-package com.chenenyu.freetimeline.view;
+package com.chenenyu.freetimeline.internal;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -13,6 +13,7 @@ import android.view.View;
 public class ToggleView extends View {
     private static final Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private boolean opened;
+    private int toggleColor = FreeTimeLineUI.DEFAULT_TOGGLE_COLOR;
 
     public ToggleView(Context context) {
         this(context, null);
@@ -30,7 +31,7 @@ public class ToggleView extends View {
     private void init() {
         float strokeSize = FreeTimeLineUI.dpToPixel(2.0F, this.getResources());
         mPaint.setStrokeWidth(strokeSize);
-        mPaint.setColor(FreeTimeLineUI.DEFAULT_TOGGLE_COLOR);
+        mPaint.setColor(toggleColor);
     }
 
     protected void onDraw(Canvas canvas) {
@@ -49,6 +50,14 @@ public class ToggleView extends View {
     public void setOpened(boolean opened) {
         if (opened != this.opened) {
             this.opened = opened;
+            this.invalidate();
+        }
+    }
+
+    public void setToggleColor(int color) {
+        if (color != this.toggleColor) {
+            toggleColor = color;
+            mPaint.setColor(toggleColor);
             this.invalidate();
         }
     }

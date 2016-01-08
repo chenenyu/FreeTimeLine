@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="FreeTimeLine">
-        <attr name="line_color" format="reference|color"/>
-        <attr name="circle_color" format="reference|color"/>
-        <attr name="bottom_color" format="reference|color"/>
-        <attr name="toggle_color" format="reference|color"/>
         <attr name="top_type" format="enum">
             <enum name="sucker" value="0"/>
-            <enum name="normal" value="1"/>
+            <enum name="solid" value="1"/>
+            <enum name="hollow" value="2"/>
         </attr>
+        <attr name="line_color" format="reference|color"/>
+        <attr name="solid_color" format="reference|color"/>
+        <attr name="hollow_color" format="reference|color"/>
+        <attr name="toggle_color" format="reference|color"/>
     </declare-styleable>
 </resources>

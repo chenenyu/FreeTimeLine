@@ -1,4 +1,4 @@
-package com.chenenyu.freetimeline.view;
+package com.chenenyu.freetimeline.internal;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -14,22 +14,18 @@ import android.view.View;
 public class ConnectorView extends View {
 
     private Paint linePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private Paint circlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Paint solidPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Paint hollowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint togglePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private Paint bottomPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private Paint clearPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private Bitmap cache;
+    private final Paint clearPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
-    private int type;
+    private Bitmap cache;
     private float strokeSize;
 
-    public static final int TOP_SUCKER = 0;
-    public static final int TOP_SOLID = 1;
-    public static final int TOP_HOLLOW = 2;
-
-    public static final int NODE_HOLLOW = 10;
-
-    public static final int BOTTOM_SOLID = 20;
+    private int type;
+    private int lineColor = FreeTimeLineUI.DEFAULT_LINE_COLOR;
+    private int solidColor = FreeTimeLineUI.DEFAULT_SOLID_COLOR;
+    private int hollowColor = FreeTimeLineUI.DEFAULT_HOLLOW_COLOR;
 
 
     public ConnectorView(Context context) {
@@ -49,19 +45,19 @@ public class ConnectorView extends View {
      * Default config.
      */
     private void init() {
-        linePaint.setColor(FreeTimeLineUI.DEFAULT_LINE_COLOR);
-        circlePaint.setColor(FreeTimeLineUI.DEFAULT_CIRCLE_COLOR);
+        linePaint.setColor(lineColor);
+        solidPaint.setColor(solidColor);
+        hollowPaint.setColor(hollowColor);
         togglePaint.setColor(FreeTimeLineUI.DEFAULT_TOGGLE_COLOR);
-        bottomPaint.setColor(FreeTimeLineUI.DEFAULT_END_COLOR);
         clearPaint.setColor(0);
         clearPaint.setXfermode(FreeTimeLineUI.CLEAR_XFER_MODE);
 
         strokeSize = FreeTimeLineUI.dpToPixel(4.0F, this.getResources());
         linePaint.setStrokeWidth(strokeSize);
-        circlePaint.setStrokeWidth(strokeSize);
+        hollowPaint.setStrokeWidth(strokeSize);
         togglePaint.setStrokeWidth(strokeSize);
 
-        this.type = NODE_HOLLOW;
+        this.type = FreeTimeLineUI.NODE_HOLLOW;
     }
 
     @Override
@@ -80,33 +76,33 @@ public class ConnectorView extends View {
             float halfHeight = (float) height / 2.0F;
             float thirdWidth = (float) width / 3.0F;
             switch (this.type) {
-                case TOP_SUCKER:
+                case FreeTimeLineUI.TOP_SUCKER:
                     float radiusClear = halfWidth - strokeSize / 2.0F;
                     cacheCanvas.drawRect(0.0F, 0.0F, (float) width, radiusClear, togglePaint);
                     cacheCanvas.drawCircle(0.0F, radiusClear, radiusClear, clearPaint);
                     cacheCanvas.drawCircle((float) width, radiusClear, radiusClear, clearPaint);
                     cacheCanvas.drawLine(halfWidth, 0.0F, halfWidth, halfHeight, togglePaint);
                     cacheCanvas.drawLine(halfWidth, halfHeight, halfWidth, (float) height, linePaint);
-                    cacheCanvas.drawCircle(halfWidth, halfHeight, halfWidth, circlePaint);
+                    cacheCanvas.drawCircle(halfWidth, halfHeight, halfWidth, hollowPaint);
                     cacheCanvas.drawCircle(halfWidth, halfHeight, thirdWidth, clearPaint);
                     break;
-                case TOP_SOLID:
+                case FreeTimeLineUI.TOP_SOLID:
                     cacheCanvas.drawLine(halfWidth, halfHeight, halfWidth, height, linePaint);
-                    cacheCanvas.drawCircle(halfWidth, halfHeight, thirdWidth, bottomPaint);
+                    cacheCanvas.drawCircle(halfWidth, halfHeight, thirdWidth, solidPaint);
                     break;
-                case TOP_HOLLOW:
+                case FreeTimeLineUI.TOP_HOLLOW:
                     cacheCanvas.drawLine(halfWidth, halfHeight, halfWidth, height, linePaint);
-                    cacheCanvas.drawCircle(halfWidth, halfHeight, halfWidth, circlePaint);
+                    cacheCanvas.drawCircle(halfWidth, halfHeight, halfWidth, hollowPaint);
                     cacheCanvas.drawCircle(halfWidth, halfHeight, thirdWidth, clearPaint);
                     break;
-                case NODE_HOLLOW:
+                case FreeTimeLineUI.NODE_HOLLOW:
                     cacheCanvas.drawLine(halfWidth, 0.0F, halfWidth, (float) height, linePaint);
-                    cacheCanvas.drawCircle(halfWidth, halfHeight, halfWidth, circlePaint);
+                    cacheCanvas.drawCircle(halfWidth, halfHeight, halfWidth, hollowPaint);
                     cacheCanvas.drawCircle(halfWidth, halfHeight, thirdWidth, clearPaint);
                     break;
-                case BOTTOM_SOLID:
+                case FreeTimeLineUI.BOTTOM_SOLID:
                     cacheCanvas.drawLine(halfWidth, 0.0F, halfWidth, halfHeight, linePaint);
-                    cacheCanvas.drawCircle(halfWidth, halfHeight, thirdWidth, bottomPaint);
+                    cacheCanvas.drawCircle(halfWidth, halfHeight, thirdWidth, solidPaint);
                     break;
             }
         }
@@ -114,13 +110,44 @@ public class ConnectorView extends View {
         canvas.drawBitmap(this.cache, 0.0F, 0.0F, null);
     }
 
+    private void recycleCache() {
+        if (this.cache != null) {
+            this.cache.recycle();
+            this.cache = null;
+        }
+    }
+
     public void setType(int type) {
         if (type != this.type) {
             this.type = type;
-            if (this.cache != null) {
-                this.cache.recycle();
-                this.cache = null;
-            }
+            recycleCache();
+            this.invalidate();
+        }
+    }
+
+    public void setLineColor(int color) {
+        if (color != this.lineColor) {
+            lineColor = color;
+            recycleCache();
+            linePaint.setColor(lineColor);
+            this.invalidate();
+        }
+    }
+
+    public void setSolidColor(int color) {
+        if (color != this.solidColor) {
+            solidColor = color;
+            recycleCache();
+            solidPaint.setColor(solidColor);
+            this.invalidate();
+        }
+    }
+
+    public void setHollowColor(int color) {
+        if (color != this.hollowColor) {
+            hollowColor = color;
+            recycleCache();
+            hollowPaint.setColor(hollowColor);
             this.invalidate();
         }
     }

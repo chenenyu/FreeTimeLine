@@ -23,23 +23,38 @@
         tools:text="2015年1月7日"
         tools:visibility="visible"/>
 
-    <com.chenenyu.freetimeline.view.ConnectorView
+    <com.chenenyu.freetimeline.internal.ConnectorView
         android:id="@+id/__ftl_row_connector"
         android:layout_width="16dp"
         android:layout_height="match_parent"
         android:layout_marginRight="8dp"/>
 
-    <TextView
-        android:id="@+id/__ftl_row_middle_text"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:gravity="center_vertical"
+        android:orientation="vertical"
         android:paddingBottom="2dp"
-        android:paddingTop="2dp"/>
+        android:paddingTop="2dp">
 
-    <com.chenenyu.freetimeline.view.ToggleView
+        <TextView
+            android:id="@+id/__ftl_row_middle_parent_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"/>
+
+        <TextView
+            android:id="@+id/__ftl_row_middle_child_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textSize="12sp"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+
+    <com.chenenyu.freetimeline.internal.ToggleView
         android:id="@+id/__ftl_row_toggle"
         android:layout_width="12dp"
         android:layout_height="12dp"

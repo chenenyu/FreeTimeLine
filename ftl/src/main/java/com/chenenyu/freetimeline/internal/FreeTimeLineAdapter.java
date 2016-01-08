@@ -1,7 +1,6 @@
-package com.chenenyu.freetimeline;
+package com.chenenyu.freetimeline.internal;
 
 import android.content.Context;
-import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,15 +8,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.chenenyu.freetimeline.view.ConnectorView;
-import com.chenenyu.freetimeline.view.ToggleView;
+import com.chenenyu.freetimeline.FreeTimeLineConfig;
+import com.chenenyu.freetimeline.FreeTimeLineElement;
+import com.chenenyu.freetimeline.R;
 
 import java.util.Collections;
 import java.util.List;
 
 /**
  * <p>
- * <a href="https://github.com/chenenyu/FreeTimeLine">Source code</a>
+ * <a href="https://github.com/chenenyu/FreeTimeLine">FreeTimeLineAdapter</a>
  * </p>
  * Created by Cheney on 16/1/6.
  */
@@ -27,9 +27,11 @@ public class FreeTimeLineAdapter extends BaseAdapter {
     private final boolean SHOW_LEFT;
     private final boolean SHOW_TOGGLE;
     private List<FreeTimeLineElement> mElements = Collections.emptyList();
+    private FreeTimeLineConfig mConfig;
 
-    public FreeTimeLineAdapter(List<FreeTimeLineElement> elements) {
+    public FreeTimeLineAdapter(List<FreeTimeLineElement> elements, FreeTimeLineConfig config) {
         mElements = elements;
+        mConfig = config;
         opened = new boolean[mElements.size()];
         SHOW_LEFT = showLeft();
         // TODO: 16/1/7 ?
@@ -59,8 +61,13 @@ public class FreeTimeLineAdapter extends BaseAdapter {
         }
         TextView left = (TextView) convertView.findViewById(R.id.__ftl_row_left_text);
         ConnectorView connectorView = (ConnectorView) convertView.findViewById(R.id.__ftl_row_connector);
-        TextView middle = (TextView) convertView.findViewById(R.id.__ftl_row_middle_text);
+        connectorView.setLineColor(mConfig.LINE_COLOR);
+        connectorView.setSolidColor(mConfig.SOLID_COLOR);
+        connectorView.setHollowColor(mConfig.HOLLOW_COLOR);
+        TextView middle_parent = (TextView) convertView.findViewById(R.id.__ftl_row_middle_parent_text);
+        TextView middle_child = (TextView) convertView.findViewById(R.id.__ftl_row_middle_child_text);
         ToggleView toggleView = (ToggleView) convertView.findViewById(R.id.__ftl_row_toggle);
+        toggleView.setToggleColor(mConfig.TOGGLE_COLOR);
 
         if (SHOW_LEFT) {
             left.setVisibility(View.VISIBLE);
@@ -68,21 +75,25 @@ public class FreeTimeLineAdapter extends BaseAdapter {
         }
 
         if (position == 0) {
-            // TODO: 16/1/7 判断是普通样式还是吸盘样式
-            connectorView.setType(ConnectorView.TOP_HOLLOW);
+            connectorView.setType(mConfig.TOP_TYPE);
         } else if (position == mElements.size() - 1) {
-            connectorView.setType(ConnectorView.BOTTOM_SOLID);
+            connectorView.setType(FreeTimeLineUI.BOTTOM_SOLID);
         } else {
-            connectorView.setType(ConnectorView.NODE_HOLLOW);
+            connectorView.setType(FreeTimeLineUI.NODE_HOLLOW);
         }
 
+        middle_parent.setText(mElements.get(position).getParent());
         if (SHOW_TOGGLE) {
             toggleView.setVisibility(View.VISIBLE);
             toggleView.setOpened(opened[position]);
-            middle.setText(Html.fromHtml(elementToHtmlString(mElements.get(position), opened[position])));
+            if (opened[position]) {
+                middle_child.setVisibility(View.VISIBLE);
+                middle_child.setText(mElements.get(position).getChild());
+            } else {
+                middle_child.setVisibility(View.GONE);
+            }
         } else {
             toggleView.setVisibility(View.GONE);
-            middle.setText(mElements.get(position).getParent());
         }
 
         return convertView;
@@ -98,23 +109,12 @@ public class FreeTimeLineAdapter extends BaseAdapter {
 
     /**
      * Expand or collapse row.
+     *
      * @param position clicked item.
      */
     public void toggleRow(int position) {
         this.opened[position] = !this.opened[position];
         notifyDataSetChanged();
-    }
-
-    private String elementToHtmlString(FreeTimeLineElement element, boolean opened) {
-        if (TextUtils.isEmpty(element.getParent())) {
-            return "";
-        }
-        if (opened && !TextUtils.isEmpty(element.getChild())) {
-            return "<font color=\'#2E2C2C\'>" + element.getParent() + "</font><br><font color=\'#3B3939\'>"
-                    + element.getChild() + "</font>";
-        } else {
-            return element.getParent();
-        }
     }
 
 }

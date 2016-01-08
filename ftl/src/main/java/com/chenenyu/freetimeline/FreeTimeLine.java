@@ -9,8 +9,8 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
-import com.chenenyu.freetimeline.view.ConnectorView;
-import com.chenenyu.freetimeline.view.FreeTimeLineUI;
+import com.chenenyu.freetimeline.internal.FreeTimeLineAdapter;
+import com.chenenyu.freetimeline.internal.FreeTimeLineUI;
 
 import java.util.List;
 
@@ -25,11 +25,13 @@ public class FreeTimeLine extends FrameLayout {
     private ListView mContent;
     private List<FreeTimeLineElement> mElements;
     private FreeTimeLineAdapter mAdapter;
-    private int LINE_COLOR;
-    private int CIRCLE_COLOR;
-    private int END_COLOR;
+
+    private FreeTimeLineConfig mConfig;
+    private int TOP_TYPE; // 顶部结点的样式
+    private int LINE_COLOR; // 竖线的颜色
+    private int SOLID_COLOR; // 实心圆的颜色
+    private int HOLLOW_COLOR;
     private int TOGGLE_COLOR;
-    private int TOP_TYPE;
 
     public FreeTimeLine(Context context) {
         this(context, null);
@@ -42,15 +44,24 @@ public class FreeTimeLine extends FrameLayout {
     public FreeTimeLine(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FreeTimeLine, defStyleAttr, 0);
+        TOP_TYPE = a.getInt(R.styleable.FreeTimeLine_top_type, FreeTimeLineUI.TOP_SOLID);
         LINE_COLOR = a.getColor(R.styleable.FreeTimeLine_line_color, FreeTimeLineUI.DEFAULT_LINE_COLOR);
-        CIRCLE_COLOR = a.getColor(R.styleable.FreeTimeLine_circle_color, FreeTimeLineUI.DEFAULT_CIRCLE_COLOR);
-        END_COLOR = a.getColor(R.styleable.FreeTimeLine_bottom_color, FreeTimeLineUI.DEFAULT_END_COLOR);
+        SOLID_COLOR = a.getColor(R.styleable.FreeTimeLine_solid_color, FreeTimeLineUI.DEFAULT_SOLID_COLOR);
+        HOLLOW_COLOR = a.getColor(R.styleable.FreeTimeLine_hollow_color, FreeTimeLineUI.DEFAULT_HOLLOW_COLOR);
         TOGGLE_COLOR = a.getColor(R.styleable.FreeTimeLine_toggle_color, FreeTimeLineUI.DEFAULT_TOGGLE_COLOR);
-        TOP_TYPE = a.getInt(R.styleable.FreeTimeLine_top_type, ConnectorView.TOP_SOLID);
         a.recycle();
+
+        mConfig = new FreeTimeLineConfig.Builder()
+                .setTopType(TOP_TYPE)
+                .setLineColor(LINE_COLOR)
+                .setSolidColor(SOLID_COLOR)
+                .setHollowColor(HOLLOW_COLOR)
+                .setToggleColor(TOGGLE_COLOR)
+                .build();
 
         mContent = new ListView(context);
         mContent.setDivider(null);
+        mContent.setCacheColorHint(0);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         this.addView(mContent, layoutParams);
@@ -68,8 +79,7 @@ public class FreeTimeLine extends FrameLayout {
         this.mElements = elements;
         if (mElements != null) {
             if (mAdapter == null) {
-                mAdapter = new FreeTimeLineAdapter(mElements);
-                // custom attrs
+                mAdapter = new FreeTimeLineAdapter(mElements, mConfig);
             }
         }
         mContent.setAdapter(mAdapter);
@@ -79,5 +89,11 @@ public class FreeTimeLine extends FrameLayout {
                 mAdapter.toggleRow(position);
             }
         });
+    }
+
+    public void setConfig(FreeTimeLineConfig config) {
+        mConfig = config;
+        if (mAdapter != null)
+            mAdapter.notifyDataSetChanged();
     }
 }
