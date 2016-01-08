@@ -7,4 +7,5 @@ build
 *.iml
 # /gradle
 androidTest
+bintray.gradle
 test
