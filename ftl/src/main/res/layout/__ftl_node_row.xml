@@ -20,7 +20,7 @@
         android:maxWidth="90dp"
         android:textSize="12sp"
         android:visibility="gone"
-        tools:text="2015年1月7日"
+        tools:text="2015/1/7"
         tools:visibility="visible"/>
 
     <com.chenenyu.freetimeline.internal.ConnectorView

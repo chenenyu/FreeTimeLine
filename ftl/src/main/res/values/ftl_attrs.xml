@@ -14,9 +14,18 @@
             <enum name="solid" value="20"/>
             <enum name="hollow" value="21"/>
         </attr>
+
         <attr name="line_color" format="reference|color"/>
         <attr name="solid_color" format="reference|color"/>
         <attr name="hollow_color" format="reference|color"/>
+        <attr name="sucker_color" format="reference|color"/>
         <attr name="toggle_color" format="reference|color"/>
+
+        <attr name="left_color" format="reference|color"/>
+        <attr name="left_size" format="reference|dimension"/>
+        <attr name="parent_color" format="reference|color"/>
+        <attr name="parent_size" format="reference|dimension"/>
+        <attr name="child_color" format="reference|color"/>
+        <attr name="child_size" format="reference|dimension"/>
     </declare-styleable>
 </resources>

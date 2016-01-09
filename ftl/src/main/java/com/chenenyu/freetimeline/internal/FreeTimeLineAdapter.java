@@ -60,12 +60,19 @@ public class FreeTimeLineAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.__ftl_node_row, parent, false);
         }
         TextView left = (TextView) convertView.findViewById(R.id.__ftl_row_left_text);
+        left.setTextColor(mConfig.LEFT_COLOR);
+        left.setTextSize(mConfig.LEFT_SIZE);
         ConnectorView connectorView = (ConnectorView) convertView.findViewById(R.id.__ftl_row_connector);
         connectorView.setLineColor(mConfig.LINE_COLOR);
         connectorView.setSolidColor(mConfig.SOLID_COLOR);
+        connectorView.setSuckerColor(mConfig.SUCKER_COLOR);
         connectorView.setHollowColor(mConfig.HOLLOW_COLOR);
         TextView middle_parent = (TextView) convertView.findViewById(R.id.__ftl_row_middle_parent_text);
+        middle_parent.setTextColor(mConfig.PARENT_COLOR);
+        middle_parent.setTextSize(mConfig.PARENT_SIZE);
         TextView middle_child = (TextView) convertView.findViewById(R.id.__ftl_row_middle_child_text);
+        middle_child.setTextColor(mConfig.CHILD_COLOR);
+        middle_child.setTextSize(mConfig.CHILD_SIZE);
         ToggleView toggleView = (ToggleView) convertView.findViewById(R.id.__ftl_row_toggle);
         toggleView.setToggleColor(mConfig.TOGGLE_COLOR);
 
@@ -77,9 +84,9 @@ public class FreeTimeLineAdapter extends BaseAdapter {
         if (position == 0) {
             connectorView.setType(mConfig.TOP_TYPE);
         } else if (position == mElements.size() - 1) {
-            connectorView.setType(FreeTimeLineUI.BOTTOM_SOLID);
+            connectorView.setType(mConfig.BOTTOM_TYPE);
         } else {
-            connectorView.setType(FreeTimeLineUI.NODE_HOLLOW);
+            connectorView.setType(mConfig.NODE_TYPE);
         }
 
         middle_parent.setText(mElements.get(position).getParent());

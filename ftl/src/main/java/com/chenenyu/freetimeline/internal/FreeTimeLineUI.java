@@ -9,8 +9,9 @@ public class FreeTimeLineUI {
     public static final int DEFAULT_LINE_COLOR = 0xFFD3D3D3;
     public static final int DEFAULT_SOLID_COLOR = 0xFF7B593B;
     public static final int DEFAULT_HOLLOW_COLOR = 0xFFD3D3D3;
+    public static final int DEFAULT_SUCKER_COLOR = 0xFF4EAAB2;
     public static final int DEFAULT_TOGGLE_COLOR = 0xFF4EAAB2;
-    static final PorterDuffXfermode CLEAR_XFER_MODE;
+    static final PorterDuffXfermode CLEAR_XFER_MODE = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
 
     // Top type
     public static final int TOP_SUCKER = 0;
@@ -28,10 +29,6 @@ public class FreeTimeLineUI {
 
     private FreeTimeLineUI() {
         throw new AssertionError();
-    }
-
-    static {
-        CLEAR_XFER_MODE = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
     }
 
     static float dpToPixel(float dp, Resources resources) {

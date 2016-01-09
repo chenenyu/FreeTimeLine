@@ -16,7 +16,7 @@ public class ConnectorView extends View {
     private Paint linePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint solidPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint hollowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private Paint togglePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Paint suckerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint clearPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
     private Bitmap cache;
@@ -26,6 +26,7 @@ public class ConnectorView extends View {
     private int lineColor = FreeTimeLineUI.DEFAULT_LINE_COLOR;
     private int solidColor = FreeTimeLineUI.DEFAULT_SOLID_COLOR;
     private int hollowColor = FreeTimeLineUI.DEFAULT_HOLLOW_COLOR;
+    private int suckerColor = FreeTimeLineUI.DEFAULT_SUCKER_COLOR;
 
 
     public ConnectorView(Context context) {
@@ -48,14 +49,14 @@ public class ConnectorView extends View {
         linePaint.setColor(lineColor);
         solidPaint.setColor(solidColor);
         hollowPaint.setColor(hollowColor);
-        togglePaint.setColor(FreeTimeLineUI.DEFAULT_TOGGLE_COLOR);
+        suckerPaint.setColor(suckerColor);
         clearPaint.setColor(0);
         clearPaint.setXfermode(FreeTimeLineUI.CLEAR_XFER_MODE);
 
         strokeSize = FreeTimeLineUI.dpToPixel(4.0F, this.getResources());
         linePaint.setStrokeWidth(strokeSize);
         hollowPaint.setStrokeWidth(strokeSize);
-        togglePaint.setStrokeWidth(strokeSize);
+        suckerPaint.setStrokeWidth(strokeSize);
 
         this.type = FreeTimeLineUI.NODE_HOLLOW;
     }
@@ -78,10 +79,10 @@ public class ConnectorView extends View {
             switch (this.type) {
                 case FreeTimeLineUI.TOP_SUCKER:
                     float radiusClear = halfWidth - strokeSize / 2.0F;
-                    cacheCanvas.drawRect(0.0F, 0.0F, (float) width, radiusClear, togglePaint);
+                    cacheCanvas.drawRect(0.0F, 0.0F, (float) width, radiusClear, suckerPaint);
                     cacheCanvas.drawCircle(0.0F, radiusClear, radiusClear, clearPaint);
                     cacheCanvas.drawCircle((float) width, radiusClear, radiusClear, clearPaint);
-                    cacheCanvas.drawLine(halfWidth, 0.0F, halfWidth, halfHeight, togglePaint);
+                    cacheCanvas.drawLine(halfWidth, 0.0F, halfWidth, halfHeight, suckerPaint);
                     cacheCanvas.drawLine(halfWidth, halfHeight, halfWidth, (float) height, linePaint);
                     cacheCanvas.drawCircle(halfWidth, halfHeight, halfWidth, hollowPaint);
                     cacheCanvas.drawCircle(halfWidth, halfHeight, thirdWidth, clearPaint);
@@ -137,8 +138,8 @@ public class ConnectorView extends View {
     public void setLineColor(int color) {
         if (color != this.lineColor) {
             lineColor = color;
-            recycleCache();
             linePaint.setColor(lineColor);
+            recycleCache();
             this.invalidate();
         }
     }
@@ -146,8 +147,8 @@ public class ConnectorView extends View {
     public void setSolidColor(int color) {
         if (color != this.solidColor) {
             solidColor = color;
-            recycleCache();
             solidPaint.setColor(solidColor);
+            recycleCache();
             this.invalidate();
         }
     }
@@ -155,8 +156,17 @@ public class ConnectorView extends View {
     public void setHollowColor(int color) {
         if (color != this.hollowColor) {
             hollowColor = color;
-            recycleCache();
             hollowPaint.setColor(hollowColor);
+            recycleCache();
+            this.invalidate();
+        }
+    }
+
+    public void setSuckerColor(int color) {
+        if (color != this.suckerColor) {
+            suckerColor = color;
+            suckerPaint.setColor(suckerColor);
+            recycleCache();
             this.invalidate();
         }
     }

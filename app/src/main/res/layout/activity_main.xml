@@ -15,5 +15,7 @@
         ftl:solid_color="@color/colorPrimary"
         ftl:hollow_color="@color/colorPrimaryDark"
         ftl:toggle_color="#5e3e87"
-        ftl:top_type="solid"/>
+        ftl:parent_color="#5e3e87"
+        ftl:child_size="10sp"
+        ftl:top_type="hollow"/>
 </RelativeLayout>

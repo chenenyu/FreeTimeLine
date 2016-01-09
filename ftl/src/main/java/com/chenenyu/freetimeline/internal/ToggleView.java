@@ -11,7 +11,7 @@ import android.view.View;
  * Created by Cheney on 16/1/6.
  */
 public class ToggleView extends View {
-    private static final Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private static final Paint togglePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private boolean opened;
     private int toggleColor = FreeTimeLineUI.DEFAULT_TOGGLE_COLOR;
 
@@ -30,8 +30,8 @@ public class ToggleView extends View {
 
     private void init() {
         float strokeSize = FreeTimeLineUI.dpToPixel(2.0F, this.getResources());
-        mPaint.setStrokeWidth(strokeSize);
-        mPaint.setColor(toggleColor);
+        togglePaint.setStrokeWidth(strokeSize);
+        togglePaint.setColor(toggleColor);
     }
 
     protected void onDraw(Canvas canvas) {
@@ -40,10 +40,10 @@ public class ToggleView extends View {
         int halfHeight = height / 2;
         int halfWidth = width / 2;
         if (this.opened) {
-            canvas.drawLine(0.0F, (float) halfHeight, (float) width, (float) halfHeight, mPaint);
+            canvas.drawLine(0.0F, (float) halfHeight, (float) width, (float) halfHeight, togglePaint);
         } else {
-            canvas.drawLine(0.0F, (float) halfHeight, (float) width, (float) halfHeight, mPaint);
-            canvas.drawLine((float) halfWidth, 0.0F, (float) halfWidth, (float) height, mPaint);
+            canvas.drawLine(0.0F, (float) halfHeight, (float) width, (float) halfHeight, togglePaint);
+            canvas.drawLine((float) halfWidth, 0.0F, (float) halfWidth, (float) height, togglePaint);
         }
     }
 
@@ -57,7 +57,7 @@ public class ToggleView extends View {
     public void setToggleColor(int color) {
         if (color != this.toggleColor) {
             toggleColor = color;
-            mPaint.setColor(toggleColor);
+            togglePaint.setColor(toggleColor);
             this.invalidate();
         }
     }
