@@ -12,13 +12,18 @@ public class FreeTimeLineUI {
     public static final int DEFAULT_TOGGLE_COLOR = 0xFF4EAAB2;
     static final PorterDuffXfermode CLEAR_XFER_MODE;
 
+    // Top type
     public static final int TOP_SUCKER = 0;
     public static final int TOP_SOLID = 1;
     public static final int TOP_HOLLOW = 2;
 
-    public static final int NODE_HOLLOW = 10;
+    // Node type
+    public static final int NODE_SOLID = 10;
+    public static final int NODE_HOLLOW = 11;
 
+    // Bottom type
     public static final int BOTTOM_SOLID = 20;
+    public static final int BOTTOM_HOLLOW = 21;
 
 
     private FreeTimeLineUI() {

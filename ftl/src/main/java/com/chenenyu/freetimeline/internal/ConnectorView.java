@@ -95,6 +95,10 @@ public class ConnectorView extends View {
                     cacheCanvas.drawCircle(halfWidth, halfHeight, halfWidth, hollowPaint);
                     cacheCanvas.drawCircle(halfWidth, halfHeight, thirdWidth, clearPaint);
                     break;
+                case FreeTimeLineUI.NODE_SOLID:
+                    cacheCanvas.drawLine(halfWidth, 0.0F, halfWidth, (float) height, linePaint);
+                    cacheCanvas.drawCircle(halfWidth, halfHeight, thirdWidth, solidPaint);
+                    break;
                 case FreeTimeLineUI.NODE_HOLLOW:
                     cacheCanvas.drawLine(halfWidth, 0.0F, halfWidth, (float) height, linePaint);
                     cacheCanvas.drawCircle(halfWidth, halfHeight, halfWidth, hollowPaint);
@@ -103,6 +107,11 @@ public class ConnectorView extends View {
                 case FreeTimeLineUI.BOTTOM_SOLID:
                     cacheCanvas.drawLine(halfWidth, 0.0F, halfWidth, halfHeight, linePaint);
                     cacheCanvas.drawCircle(halfWidth, halfHeight, thirdWidth, solidPaint);
+                    break;
+                case FreeTimeLineUI.BOTTOM_HOLLOW:
+                    cacheCanvas.drawLine(halfWidth, 0.0F, halfWidth, halfHeight, linePaint);
+                    cacheCanvas.drawCircle(halfWidth, halfHeight, halfWidth, hollowPaint);
+                    cacheCanvas.drawCircle(halfWidth, halfHeight, thirdWidth, clearPaint);
                     break;
             }
         }

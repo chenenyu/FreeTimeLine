@@ -28,10 +28,12 @@ public class FreeTimeLine extends FrameLayout {
 
     private FreeTimeLineConfig mConfig;
     private int TOP_TYPE; // 顶部结点的样式
+    private int NODE_TYPE; // 中间结点的样式
+    private int BOTTOM_TYPE; // 底部结点的样式
     private int LINE_COLOR; // 竖线的颜色
     private int SOLID_COLOR; // 实心圆的颜色
-    private int HOLLOW_COLOR;
-    private int TOGGLE_COLOR;
+    private int HOLLOW_COLOR; // 空心圆的颜色
+    private int TOGGLE_COLOR; // +/-号的颜色
 
     public FreeTimeLine(Context context) {
         this(context, null);
@@ -45,6 +47,8 @@ public class FreeTimeLine extends FrameLayout {
         super(context, attrs, defStyleAttr);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FreeTimeLine, defStyleAttr, 0);
         TOP_TYPE = a.getInt(R.styleable.FreeTimeLine_top_type, FreeTimeLineUI.TOP_SOLID);
+        NODE_TYPE = a.getInt(R.styleable.FreeTimeLine_node_type, FreeTimeLineUI.NODE_HOLLOW);
+        BOTTOM_TYPE = a.getInt(R.styleable.FreeTimeLine_bottom_type, FreeTimeLineUI.BOTTOM_HOLLOW);
         LINE_COLOR = a.getColor(R.styleable.FreeTimeLine_line_color, FreeTimeLineUI.DEFAULT_LINE_COLOR);
         SOLID_COLOR = a.getColor(R.styleable.FreeTimeLine_solid_color, FreeTimeLineUI.DEFAULT_SOLID_COLOR);
         HOLLOW_COLOR = a.getColor(R.styleable.FreeTimeLine_hollow_color, FreeTimeLineUI.DEFAULT_HOLLOW_COLOR);
