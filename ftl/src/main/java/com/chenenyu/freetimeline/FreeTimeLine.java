@@ -3,7 +3,6 @@ package com.chenenyu.freetimeline;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,15 +68,11 @@ public class FreeTimeLine extends FrameLayout {
 
         LEFT_COLOR = a.getColor(R.styleable.FreeTimeLine_left_color, getResources().getColor(android.R.color.black));
         LEFT_SIZE = a.getDimension(R.styleable.FreeTimeLine_left_size,
-                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12, getResources().getDisplayMetrics()));
+                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 13, getResources().getDisplayMetrics()));
         PARENT_COLOR = a.getColor(R.styleable.FreeTimeLine_parent_color, getResources().getColor(android.R.color.black));
-        PARENT_SIZE = a.getDimension(R.styleable.FreeTimeLine_parent_size,
-                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14, getResources().getDisplayMetrics()));
-        Log.d("PARENT_SIZE", "" + PARENT_SIZE);
+        PARENT_SIZE = a.getDimension(R.styleable.FreeTimeLine_parent_size, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14, getResources().getDisplayMetrics()));
         CHILD_COLOR = a.getColor(R.styleable.FreeTimeLine_child_color, getResources().getColor(android.R.color.black));
-        CHILD_SIZE = a.getDimension(R.styleable.FreeTimeLine_child_size,
-                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12, getResources().getDisplayMetrics()));
-        Log.d("CHILD_SIZE", "" + CHILD_SIZE);
+        CHILD_SIZE = a.getDimension(R.styleable.FreeTimeLine_child_size, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 13, getResources().getDisplayMetrics()));
         a.recycle();
 
         mBuilder = new FreeTimeLineConfig.Builder()

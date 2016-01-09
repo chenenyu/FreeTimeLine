@@ -2,6 +2,7 @@ package com.chenenyu.freetimeline.internal;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +62,7 @@ public class FreeTimeLineAdapter extends BaseAdapter {
         }
         TextView left = (TextView) convertView.findViewById(R.id.__ftl_row_left_text);
         left.setTextColor(mConfig.LEFT_COLOR);
-        left.setTextSize(mConfig.LEFT_SIZE);
+        left.setTextSize(TypedValue.COMPLEX_UNIT_PX, mConfig.LEFT_SIZE);
         ConnectorView connectorView = (ConnectorView) convertView.findViewById(R.id.__ftl_row_connector);
         connectorView.setLineColor(mConfig.LINE_COLOR);
         connectorView.setSolidColor(mConfig.SOLID_COLOR);
@@ -69,10 +70,10 @@ public class FreeTimeLineAdapter extends BaseAdapter {
         connectorView.setHollowColor(mConfig.HOLLOW_COLOR);
         TextView middle_parent = (TextView) convertView.findViewById(R.id.__ftl_row_middle_parent_text);
         middle_parent.setTextColor(mConfig.PARENT_COLOR);
-        middle_parent.setTextSize(mConfig.PARENT_SIZE);
+        middle_parent.setTextSize(TypedValue.COMPLEX_UNIT_PX, mConfig.PARENT_SIZE);
         TextView middle_child = (TextView) convertView.findViewById(R.id.__ftl_row_middle_child_text);
         middle_child.setTextColor(mConfig.CHILD_COLOR);
-        middle_child.setTextSize(mConfig.CHILD_SIZE);
+        middle_child.setTextSize(TypedValue.COMPLEX_UNIT_PX, mConfig.CHILD_SIZE);
         ToggleView toggleView = (ToggleView) convertView.findViewById(R.id.__ftl_row_toggle);
         toggleView.setToggleColor(mConfig.TOGGLE_COLOR);
 
