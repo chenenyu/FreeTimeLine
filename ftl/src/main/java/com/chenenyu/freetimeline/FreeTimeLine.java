@@ -123,4 +123,104 @@ public class FreeTimeLine extends FrameLayout {
         });
     }
 
+
+    public void setTopType(int type) {
+        if (mAdapter != null && TOP_TYPE != type) {
+            mConfig = mBuilder.setTopType(type).build();
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void setNodeType(int type) {
+        if (mAdapter != null && NODE_TYPE != type) {
+            mConfig = mBuilder.setNodeType(type).build();
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void setBottomType(int type) {
+        if (mAdapter != null && BOTTOM_TYPE != type) {
+            mConfig = mBuilder.setBottomType(type).build();
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void setLineColor(int color) {
+        if (mAdapter != null && LINE_COLOR != color) {
+            mConfig = mBuilder.setLineColor(color).build();
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void setSolidColor(int color) {
+        if (mAdapter != null && SOLID_COLOR != color) {
+            mConfig = mBuilder.setSolidColor(color).build();
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void setHollowColor(int color) {
+        if (mAdapter != null && HOLLOW_COLOR != color) {
+            mConfig = mBuilder.setHollowColor(color).build();
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void setSuckerColor(int color) {
+        if (mAdapter != null && SUCKER_COLOR != color) {
+            mConfig = mBuilder.setSuckerColor(color).build();
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void setToggleColor(int color) {
+        if (mAdapter != null && TOGGLE_COLOR != color) {
+            mConfig = mBuilder.setToggleColor(color).build();
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+
+    public void setLeftColor(int color) {
+        if (mAdapter != null && LEFT_COLOR != color) {
+            mConfig = mBuilder.setLeftColor(color).build();
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void setLeftSize(float size) {
+        if (mAdapter != null && LEFT_SIZE != size) {
+            mConfig = mBuilder.setLeftSize(size).build();
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void setParentColor(int color) {
+        if (mAdapter != null && PARENT_COLOR != color) {
+            mConfig = mBuilder.setParentColor(color).build();
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void setParentSize(float size) {
+        if (mAdapter != null && PARENT_SIZE != size) {
+            mConfig = mBuilder.setParentSize(size).build();
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void setChildColor(int color) {
+        if (mAdapter != null && CHILD_COLOR != color) {
+            mConfig = mBuilder.setChildColor(color).build();
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void setChildSize(float size) {
+        if (mAdapter != null && CHILD_SIZE != size) {
+            mConfig = mBuilder.setChildSize(size).build();
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
 }

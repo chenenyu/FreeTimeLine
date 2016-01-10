@@ -112,33 +112,33 @@ public class FreeTimeLineConfig {
         }
 
 
-        public Builder setLeftColor(int left_color) {
-            this.left_color = left_color;
+        public Builder setLeftColor(int color) {
+            this.left_color = color;
             return this;
         }
 
-        public Builder setLeftSize(float left_size) {
-            this.left_size = left_size;
+        public Builder setLeftSize(float size) {
+            this.left_size = size;
             return this;
         }
 
-        public Builder setParentColor(int parent_color) {
-            this.parent_color = parent_color;
+        public Builder setParentColor(int color) {
+            this.parent_color = color;
             return this;
         }
 
-        public Builder setParentSize(float parent_size) {
-            this.parent_size = parent_size;
+        public Builder setParentSize(float size) {
+            this.parent_size = size;
             return this;
         }
 
-        public Builder setChildColor(int child_color) {
-            this.child_color = child_color;
+        public Builder setChildColor(int color) {
+            this.child_color = color;
             return this;
         }
 
-        public Builder setChildSize(float child_size) {
-            this.child_size = child_size;
+        public Builder setChildSize(float size) {
+            this.child_size = size;
             return this;
         }
 
