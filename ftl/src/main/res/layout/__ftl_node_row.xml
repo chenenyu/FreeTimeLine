@@ -53,7 +53,6 @@
             android:visibility="gone"/>
     </LinearLayout>
 
-
     <com.chenenyu.freetimeline.internal.ToggleView
         android:id="@+id/__ftl_row_toggle"
         android:layout_width="12dp"
