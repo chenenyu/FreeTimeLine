@@ -2,7 +2,6 @@ package com.chenenyu.freetimeline.internal;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +34,7 @@ public class FreeTimeLineAdapter extends BaseAdapter {
         mConfig = config;
         opened = new boolean[mElements.size()];
         SHOW_LEFT = showLeft();
-        SHOW_TOGGLE = mConfig.SHOW_TOGGLE;
+        SHOW_TOGGLE = mConfig.isShowToggle();
     }
 
     @Override
@@ -60,21 +59,21 @@ public class FreeTimeLineAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.__ftl_node_row, parent, false);
         }
         TextView left = (TextView) convertView.findViewById(R.id.__ftl_row_left_text);
-        left.setTextColor(mConfig.LEFT_COLOR);
-        left.setTextSize(TypedValue.COMPLEX_UNIT_PX, mConfig.LEFT_SIZE);
+        left.setTextColor(mConfig.getLeftColor());
+        left.setTextSize(mConfig.getLeftSize());
         ConnectorView connectorView = (ConnectorView) convertView.findViewById(R.id.__ftl_row_connector);
-        connectorView.setLineColor(mConfig.LINE_COLOR);
-        connectorView.setSolidColor(mConfig.SOLID_COLOR);
-        connectorView.setSuckerColor(mConfig.SUCKER_COLOR);
-        connectorView.setHollowColor(mConfig.HOLLOW_COLOR);
+        connectorView.setLineColor(mConfig.getLineColor());
+        connectorView.setSolidColor(mConfig.getSolidColor());
+        connectorView.setSuckerColor(mConfig.getSuckerColor());
+        connectorView.setHollowColor(mConfig.getHollowColor());
         TextView middle_parent = (TextView) convertView.findViewById(R.id.__ftl_row_middle_parent_text);
-        middle_parent.setTextColor(mConfig.PARENT_COLOR);
-        middle_parent.setTextSize(TypedValue.COMPLEX_UNIT_PX, mConfig.PARENT_SIZE);
+        middle_parent.setTextColor(mConfig.getParentColor());
+        middle_parent.setTextSize(mConfig.getParentSize());
         TextView middle_child = (TextView) convertView.findViewById(R.id.__ftl_row_middle_child_text);
-        middle_child.setTextColor(mConfig.CHILD_COLOR);
-        middle_child.setTextSize(TypedValue.COMPLEX_UNIT_PX, mConfig.CHILD_SIZE);
+        middle_child.setTextColor(mConfig.getChildColor());
+        middle_child.setTextSize(mConfig.getChildSize());
         ToggleView toggleView = (ToggleView) convertView.findViewById(R.id.__ftl_row_toggle);
-        toggleView.setToggleColor(mConfig.TOGGLE_COLOR);
+        toggleView.setToggleColor(mConfig.getToggleColor());
 
         if (SHOW_LEFT) {
             left.setVisibility(View.VISIBLE);
@@ -82,11 +81,11 @@ public class FreeTimeLineAdapter extends BaseAdapter {
         }
 
         if (position == 0) {
-            connectorView.setType(mConfig.TOP_TYPE);
+            connectorView.setType(mConfig.getTopType());
         } else if (position == mElements.size() - 1) {
-            connectorView.setType(mConfig.BOTTOM_TYPE);
+            connectorView.setType(mConfig.getBottomType());
         } else {
-            connectorView.setType(mConfig.NODE_TYPE);
+            connectorView.setType(mConfig.getNodeType());
         }
 
         middle_parent.setText(mElements.get(position).getParent());

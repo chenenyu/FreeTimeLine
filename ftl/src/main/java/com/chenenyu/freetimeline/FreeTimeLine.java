@@ -25,7 +25,6 @@ public class FreeTimeLine extends FrameLayout {
 
     private ListView mContent;
     private FreeTimeLineAdapter mAdapter;
-    private FreeTimeLineConfig.Builder mBuilder;
     private FreeTimeLineConfig mConfig;
 
     private int TOP_TYPE; // 顶部结点的样式
@@ -68,20 +67,25 @@ public class FreeTimeLine extends FrameLayout {
         SUCKER_COLOR = a.getColor(R.styleable.FreeTimeLine_sucker_color, FreeTimeLineUI.DEFAULT_SUCKER_COLOR);
         TOGGLE_COLOR = a.getColor(R.styleable.FreeTimeLine_toggle_color, FreeTimeLineUI.DEFAULT_TOGGLE_COLOR);
 
-        LEFT_COLOR = a.getColor(R.styleable.FreeTimeLine_left_color, getResources().getColor(android.R.color.black));
-        LEFT_SIZE = a.getDimension(R.styleable.FreeTimeLine_left_size,
-                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 13, getResources().getDisplayMetrics()));
-        PARENT_COLOR = a.getColor(R.styleable.FreeTimeLine_parent_color, getResources().getColor(android.R.color.black));
-        PARENT_SIZE = a.getDimension(R.styleable.FreeTimeLine_parent_size,
-                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14, getResources().getDisplayMetrics()));
-        CHILD_COLOR = a.getColor(R.styleable.FreeTimeLine_child_color, getResources().getColor(android.R.color.black));
-        CHILD_SIZE = a.getDimension(R.styleable.FreeTimeLine_child_size,
-                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 13, getResources().getDisplayMetrics()));
+        LEFT_COLOR = a.getColor(R.styleable.FreeTimeLine_left_color, FreeTimeLineUI.DEFAULT_LEFT_COLOR);
+        LEFT_SIZE = a.getDimension(R.styleable.FreeTimeLine_left_size, TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_SP, FreeTimeLineUI.DEFAULT_LEFT_SIZE, getResources().getDisplayMetrics()));
+        LEFT_SIZE = LEFT_SIZE / getResources().getDisplayMetrics().scaledDensity;
 
-        SHOW_TOGGLE = a.getBoolean(R.styleable.FreeTimeLine_show_toggle, false);
+        PARENT_COLOR = a.getColor(R.styleable.FreeTimeLine_parent_color, FreeTimeLineUI.DEFAULT_PARENT_COLOR);
+        PARENT_SIZE = a.getDimension(R.styleable.FreeTimeLine_parent_size, TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_SP, FreeTimeLineUI.DEFAULT_PARENT_SIZE, getResources().getDisplayMetrics()));
+        PARENT_SIZE = PARENT_SIZE / getResources().getDisplayMetrics().scaledDensity;
+
+        CHILD_COLOR = a.getColor(R.styleable.FreeTimeLine_child_color, FreeTimeLineUI.DEFAULT_CHILD_COLOR);
+        CHILD_SIZE = a.getDimension(R.styleable.FreeTimeLine_child_size, TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_SP, FreeTimeLineUI.DEFAULT_CHILD_SIZE, getResources().getDisplayMetrics()));
+        CHILD_SIZE = CHILD_SIZE / getResources().getDisplayMetrics().scaledDensity;
+
+        SHOW_TOGGLE = a.getBoolean(R.styleable.FreeTimeLine_show_toggle, FreeTimeLineUI.DEFAULT_SHOW_TOGGLE);
         a.recycle();
 
-        mBuilder = new FreeTimeLineConfig.Builder()
+        mConfig = new FreeTimeLineConfig()
                 .setTopType(TOP_TYPE)
                 .setNodeType(NODE_TYPE)
                 .setBottomType(BOTTOM_TYPE)
@@ -97,7 +101,6 @@ public class FreeTimeLine extends FrameLayout {
                 .setChildColor(CHILD_COLOR)
                 .setChildSize(CHILD_SIZE)
                 .setShowToggle(SHOW_TOGGLE);
-        mConfig = mBuilder.build();
 
         mContent = new ListView(context);
         mContent.setDivider(null);
@@ -143,56 +146,56 @@ public class FreeTimeLine extends FrameLayout {
 
     public void setTopType(int type) {
         if (mAdapter != null && TOP_TYPE != type) {
-            mConfig = mBuilder.setTopType(type).build();
+            mConfig.setTopType(type);
             mAdapter.notifyDataSetChanged();
         }
     }
 
     public void setNodeType(int type) {
         if (mAdapter != null && NODE_TYPE != type) {
-            mConfig = mBuilder.setNodeType(type).build();
+            mConfig.setNodeType(type);
             mAdapter.notifyDataSetChanged();
         }
     }
 
     public void setBottomType(int type) {
         if (mAdapter != null && BOTTOM_TYPE != type) {
-            mConfig = mBuilder.setBottomType(type).build();
+            mConfig.setBottomType(type);
             mAdapter.notifyDataSetChanged();
         }
     }
 
     public void setLineColor(int color) {
         if (mAdapter != null && LINE_COLOR != color) {
-            mConfig = mBuilder.setLineColor(color).build();
+            mConfig.setLineColor(color);
             mAdapter.notifyDataSetChanged();
         }
     }
 
     public void setSolidColor(int color) {
         if (mAdapter != null && SOLID_COLOR != color) {
-            mConfig = mBuilder.setSolidColor(color).build();
+            mConfig.setSolidColor(color);
             mAdapter.notifyDataSetChanged();
         }
     }
 
     public void setHollowColor(int color) {
         if (mAdapter != null && HOLLOW_COLOR != color) {
-            mConfig = mBuilder.setHollowColor(color).build();
+            mConfig.setHollowColor(color);
             mAdapter.notifyDataSetChanged();
         }
     }
 
     public void setSuckerColor(int color) {
         if (mAdapter != null && SUCKER_COLOR != color) {
-            mConfig = mBuilder.setSuckerColor(color).build();
+            mConfig.setSuckerColor(color);
             mAdapter.notifyDataSetChanged();
         }
     }
 
     public void setToggleColor(int color) {
         if (mAdapter != null && TOGGLE_COLOR != color) {
-            mConfig = mBuilder.setToggleColor(color).build();
+            mConfig.setToggleColor(color);
             mAdapter.notifyDataSetChanged();
         }
     }
@@ -200,49 +203,49 @@ public class FreeTimeLine extends FrameLayout {
 
     public void setLeftColor(int color) {
         if (mAdapter != null && LEFT_COLOR != color) {
-            mConfig = mBuilder.setLeftColor(color).build();
+            mConfig.setLeftColor(color);
             mAdapter.notifyDataSetChanged();
         }
     }
 
     public void setLeftSize(float size) {
         if (mAdapter != null && LEFT_SIZE != size) {
-            mConfig = mBuilder.setLeftSize(size).build();
+            mConfig.setLeftSize(size);
             mAdapter.notifyDataSetChanged();
         }
     }
 
     public void setParentColor(int color) {
         if (mAdapter != null && PARENT_COLOR != color) {
-            mConfig = mBuilder.setParentColor(color).build();
+            mConfig.setParentColor(color);
             mAdapter.notifyDataSetChanged();
         }
     }
 
     public void setParentSize(float size) {
         if (mAdapter != null && PARENT_SIZE != size) {
-            mConfig = mBuilder.setParentSize(size).build();
+            mConfig.setParentSize(size);
             mAdapter.notifyDataSetChanged();
         }
     }
 
     public void setChildColor(int color) {
         if (mAdapter != null && CHILD_COLOR != color) {
-            mConfig = mBuilder.setChildColor(color).build();
+            mConfig.setChildColor(color);
             mAdapter.notifyDataSetChanged();
         }
     }
 
     public void setChildSize(float size) {
         if (mAdapter != null && CHILD_SIZE != size) {
-            mConfig = mBuilder.setChildSize(size).build();
+            mConfig.setChildSize(size);
             mAdapter.notifyDataSetChanged();
         }
     }
 
     public void setShowToggle(boolean show) {
         if (mAdapter != null && SHOW_TOGGLE != show) {
-            mConfig = mBuilder.setShowToggle(show).build();
+            mConfig.setShowToggle(show);
             mAdapter.notifyDataSetChanged();
         }
     }

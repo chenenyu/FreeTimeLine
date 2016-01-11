@@ -11,6 +11,16 @@ public class FreeTimeLineUI {
     public static final int DEFAULT_HOLLOW_COLOR = 0xFFD3D3D3;
     public static final int DEFAULT_SUCKER_COLOR = 0xFF4EAAB2;
     public static final int DEFAULT_TOGGLE_COLOR = 0xFF4EAAB2;
+
+    public static final int DEFAULT_LEFT_COLOR = 0xFF222222;
+    public static final float DEFAULT_LEFT_SIZE = 13.0F;
+    public static final int DEFAULT_PARENT_COLOR = 0xFF222222;
+    public static final float DEFAULT_PARENT_SIZE = 14.0F;
+    public static final int DEFAULT_CHILD_COLOR = 0xFF222222;
+    public static final float DEFAULT_CHILD_SIZE = 13.0F;
+
+    public static final boolean DEFAULT_SHOW_TOGGLE = false;
+
     static final PorterDuffXfermode CLEAR_XFER_MODE = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
 
     // Top type
