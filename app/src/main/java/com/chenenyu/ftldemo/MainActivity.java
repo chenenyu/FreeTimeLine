@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
     private int hollowColor = FreeTimeLineUI.DEFAULT_HOLLOW_COLOR;
     private int topType = FreeTimeLineUI.TOP_HOLLOW;
     private int nodeType = FreeTimeLineUI.NODE_HOLLOW;
-    private int bottomType = FreeTimeLineUI.BOTTOM_HOLLOW;
+    private int bottomType = FreeTimeLineUI.BOTTOM_SOLID;
     private boolean showToggle = true;
 
     @Bind(R.id.rg_top_type)

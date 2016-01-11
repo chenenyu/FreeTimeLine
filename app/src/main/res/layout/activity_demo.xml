@@ -24,6 +24,10 @@
         ftl:bottom_type="solid"
         ftl:child_color="#60615d"
         ftl:node_type="hollow"
+        ftl:parent_color="#5b4d0e"
+        ftl:solid_color="#c65e4a"
         ftl:show_toggle="true"
+        ftl:sucker_color="#FF4EAAB2"
+        ftl:toggle_color="#4e85b2"
         ftl:top_type="sucker"/>
 </LinearLayout>
