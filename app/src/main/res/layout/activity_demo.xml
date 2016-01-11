@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ftl="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.chenenyu.ftldemo.DemoActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#FF4EAAB2"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="@string/change_log"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"/>
+    <com.chenenyu.freetimeline.FreeTimeLine
+        android:id="@+id/ftl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ftl:bottom_type="solid"
+        ftl:child_color="#60615d"
+        ftl:node_type="hollow"
+        ftl:show_toggle="true"
+        ftl:top_type="sucker"/>
+</LinearLayout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="snack_info">Support more than 15 custom attrs, more
+        information in https://github.com/chenenyu/FreeTimeLine.
+    </string>
+
+    <string name="top_sucker">Top sucker type</string>
+    <string name="top_solid">Top solid type</string>
+    <string name="top_hollow">Top hollow type</string>
+    <string name="node_hollow">Hollow node</string>
+    <string name="node_solid">Solid node</string>
+    <string name="bottom_solid">Solid bottom</string>
+    <string name="bottom_hollow">Bottom hollow</string>
+    <string name="line_color">Line color</string>
+    <string name="solid_color">Solid color</string>
+    <string name="hollow_color">Hollow color</string>
+    <string name="show_toggle">Show toggle btn</string>
+    <string name="hide_toggle">Hide toggle btn</string>
+    <string name="demo">Demo</string>
+    <string name="change_log">CHANGELOG</string>
+</resources>

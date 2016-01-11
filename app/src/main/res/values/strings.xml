@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">FTLdemo</string>
+    <string name="app_name">FreeTimeLine</string>
+    <string name="snack_info">支持超过15种自定义属性,更多信息请访问https://github.com/chenenyu/FreeTimeLine</string>
+
+    <string name="top_sucker">顶部吸盘样式</string>
+    <string name="top_solid">顶部实心结点</string>
+    <string name="top_hollow">顶部空心结点</string>
+    <string name="node_hollow">中间空节点</string>
+    <string name="node_solid">中间实心节点</string>
+    <string name="bottom_solid">底部实心结点</string>
+    <string name="bottom_hollow">底部空心结点</string>
+    <string name="line_color">轴线颜色</string>
+    <string name="solid_color">实心圆颜色</string>
+    <string name="hollow_color">空心圆颜色</string>
+    <string name="show_toggle">显示折叠按钮</string>
+    <string name="hide_toggle">隐藏折叠按钮</string>
+    <string name="demo">示例样式</string>
+    <string name="change_log">更新日志</string>
 </resources>

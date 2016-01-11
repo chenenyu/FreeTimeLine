@@ -1,20 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ftl="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.chenenyu.ftldemo.MainActivity">
-
-    <com.chenenyu.freetimeline.FreeTimeLine
-        android:id="@+id/ftl"
+    android:layout_height="match_parent">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        ftl:line_color="@color/colorAccent"
-        ftl:solid_color="@color/colorPrimary"
-        ftl:hollow_color="@color/colorPrimaryDark"
-        ftl:toggle_color="#5e3e87"
-        ftl:parent_color="#5e3e87"
-        ftl:top_type="hollow"/>
+        android:orientation="vertical"
+        tools:context="com.chenenyu.ftldemo.MainActivity">
+
+        <RadioGroup
+            android:id="@+id/rg_top_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkedButton="@+id/rb_top_hollow"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/rb_top_sucker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/top_sucker"/>
+            <RadioButton
+                android:id="@+id/rb_top_solid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/top_solid"/>
+            <RadioButton
+                android:id="@+id/rb_top_hollow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/top_hollow"/>
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/rg_node_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkedButton="@+id/rb_node_hollow"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/rb_node_solid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/node_solid"/>
+            <RadioButton
+                android:id="@+id/rb_node_hollow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/node_hollow"/>
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/rg_bottom_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkedButton="@+id/rb_bottom_solid"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/rb_bottom_solid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bottom_solid"/>
+            <RadioButton
+                android:id="@+id/rb_bottom_hollow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bottom_hollow"/>
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/rg_show_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkedButton="@+id/rb_show_toggle"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/rb_show_toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_toggle"/>
+            <RadioButton
+                android:id="@+id/rb_hide_toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hide_toggle"/>
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btn_line_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/line_color"/>
+
+        <Button
+            android:id="@+id/btn_solid_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/solid_color"/>
+
+        <Button
+            android:id="@+id/btn_hollow_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hollow_color"/>
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        android:src="@mipmap/ic_github"/>
+
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:text="OK"/>
+
+    <Button
+        android:id="@+id/btn_demo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btn_ok"
+        android:layout_toRightOf="@+id/btn_ok"
+        android:text="@string/demo"/>
 </RelativeLayout>
