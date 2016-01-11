@@ -17,7 +17,7 @@ public class FreeTimeLineUI {
     public static final int DEFAULT_PARENT_COLOR = 0xFF222222;
     public static final float DEFAULT_PARENT_SIZE = 14.0F;
     public static final int DEFAULT_CHILD_COLOR = 0xFF222222;
-    public static final float DEFAULT_CHILD_SIZE = 13.0F;
+    public static final float DEFAULT_CHILD_SIZE = 12.0F;
 
     public static final boolean DEFAULT_SHOW_TOGGLE = false;
 
