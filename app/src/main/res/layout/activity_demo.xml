@@ -13,7 +13,7 @@
         android:layout_height="48dp"
         android:background="#FF4EAAB2"
         android:gravity="center_vertical"
-        android:paddingLeft="16dp"
+        android:paddingLeft="32dp"
         android:text="@string/change_log"
         android:textColor="@android:color/white"
         android:textSize="16sp"/>
