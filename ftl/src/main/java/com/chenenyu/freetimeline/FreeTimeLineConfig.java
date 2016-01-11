@@ -1,12 +1,16 @@
 package com.chenenyu.freetimeline;
 
+import com.chenenyu.freetimeline.internal.FreeTimeLineUI;
+
+import java.io.Serializable;
+
 /**
  * <p>
  * All configurations for <a href="https://github.com/chenenyu/FreeTimeLine">FreeTimeLine</a>.
  * </p>
  * Created by Cheney on 16/1/7.
  */
-public class FreeTimeLineConfig {
+public class FreeTimeLineConfig implements Serializable {
     public final int TOP_TYPE;
     public final int NODE_TYPE;
     public final int BOTTOM_TYPE;
@@ -25,6 +29,8 @@ public class FreeTimeLineConfig {
 
     public final int CHILD_COLOR;
     public final float CHILD_SIZE;
+
+    public final boolean SHOW_TOGGLE;
 
     private FreeTimeLineConfig(Builder builder) {
         this.TOP_TYPE = builder.top_type;
@@ -45,18 +51,20 @@ public class FreeTimeLineConfig {
 
         this.CHILD_COLOR = builder.child_color;
         this.CHILD_SIZE = builder.child_size;
+
+        this.SHOW_TOGGLE = builder.show_toggle;
     }
 
     public static class Builder {
-        private int top_type;
-        private int node_type;
-        private int bottom_type;
+        private int top_type = FreeTimeLineUI.TOP_HOLLOW;
+        private int node_type = FreeTimeLineUI.NODE_HOLLOW;
+        private int bottom_type = FreeTimeLineUI.BOTTOM_SOLID;
 
-        private int line_color;
-        private int solid_color;
-        private int hollow_color;
-        private int sucker_color;
-        private int toggle_color;
+        private int line_color = FreeTimeLineUI.DEFAULT_LINE_COLOR;
+        private int solid_color = FreeTimeLineUI.DEFAULT_SOLID_COLOR;
+        private int hollow_color = FreeTimeLineUI.DEFAULT_HOLLOW_COLOR;
+        private int sucker_color = FreeTimeLineUI.DEFAULT_SUCKER_COLOR;
+        private int toggle_color = FreeTimeLineUI.DEFAULT_TOGGLE_COLOR;
 
         private int left_color;
         private float left_size;
@@ -66,6 +74,8 @@ public class FreeTimeLineConfig {
 
         private int child_color;
         private float child_size;
+
+        private boolean show_toggle;
 
         public Builder() {
 
@@ -139,6 +149,11 @@ public class FreeTimeLineConfig {
 
         public Builder setChildSize(float size) {
             this.child_size = size;
+            return this;
+        }
+
+        public Builder setShowToggle(boolean show) {
+            this.show_toggle = show;
             return this;
         }
 

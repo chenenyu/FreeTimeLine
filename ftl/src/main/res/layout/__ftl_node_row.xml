@@ -16,11 +16,11 @@
         android:layout_marginRight="8dp"
         android:ellipsize="end"
         android:gravity="center"
-        android:maxLines="1"
+        android:maxLines="2"
         android:maxWidth="90dp"
         android:textSize="12sp"
         android:visibility="gone"
-        tools:text="2015/1/7"
+        tools:text="2016/1/8"
         tools:visibility="visible"/>
 
     <com.chenenyu.freetimeline.internal.ConnectorView

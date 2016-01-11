@@ -27,5 +27,7 @@
         <attr name="parent_size" format="reference|dimension"/>
         <attr name="child_color" format="reference|color"/>
         <attr name="child_size" format="reference|dimension"/>
+
+        <attr name="show_toggle" format="boolean"/>
     </declare-styleable>
 </resources>

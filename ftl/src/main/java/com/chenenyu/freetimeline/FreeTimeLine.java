@@ -29,7 +29,7 @@ public class FreeTimeLine extends FrameLayout {
     private FreeTimeLineConfig mConfig;
 
     private int TOP_TYPE; // 顶部结点的样式
-    private int NODE_TYPE; // 中间结点的样式
+    private int NODE_TYPE; // 中间节点的样式
     private int BOTTOM_TYPE; // 底部结点的样式
 
     private int LINE_COLOR; // 竖线的颜色
@@ -45,6 +45,8 @@ public class FreeTimeLine extends FrameLayout {
     private int CHILD_COLOR; // 中间子文本的颜色
     private float CHILD_SIZE; // 中间子文本的大小
 
+    private boolean SHOW_TOGGLE; // 是否显示更多按钮
+
     public FreeTimeLine(Context context) {
         this(context, null);
     }
@@ -56,7 +58,7 @@ public class FreeTimeLine extends FrameLayout {
     public FreeTimeLine(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FreeTimeLine, defStyleAttr, 0);
-        TOP_TYPE = a.getInt(R.styleable.FreeTimeLine_top_type, FreeTimeLineUI.TOP_SOLID);
+        TOP_TYPE = a.getInt(R.styleable.FreeTimeLine_top_type, FreeTimeLineUI.TOP_HOLLOW);
         NODE_TYPE = a.getInt(R.styleable.FreeTimeLine_node_type, FreeTimeLineUI.NODE_HOLLOW);
         BOTTOM_TYPE = a.getInt(R.styleable.FreeTimeLine_bottom_type, FreeTimeLineUI.BOTTOM_HOLLOW);
 
@@ -70,9 +72,13 @@ public class FreeTimeLine extends FrameLayout {
         LEFT_SIZE = a.getDimension(R.styleable.FreeTimeLine_left_size,
                 TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 13, getResources().getDisplayMetrics()));
         PARENT_COLOR = a.getColor(R.styleable.FreeTimeLine_parent_color, getResources().getColor(android.R.color.black));
-        PARENT_SIZE = a.getDimension(R.styleable.FreeTimeLine_parent_size, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14, getResources().getDisplayMetrics()));
+        PARENT_SIZE = a.getDimension(R.styleable.FreeTimeLine_parent_size,
+                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14, getResources().getDisplayMetrics()));
         CHILD_COLOR = a.getColor(R.styleable.FreeTimeLine_child_color, getResources().getColor(android.R.color.black));
-        CHILD_SIZE = a.getDimension(R.styleable.FreeTimeLine_child_size, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 13, getResources().getDisplayMetrics()));
+        CHILD_SIZE = a.getDimension(R.styleable.FreeTimeLine_child_size,
+                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 13, getResources().getDisplayMetrics()));
+
+        SHOW_TOGGLE = a.getBoolean(R.styleable.FreeTimeLine_show_toggle, false);
         a.recycle();
 
         mBuilder = new FreeTimeLineConfig.Builder()
@@ -89,7 +95,8 @@ public class FreeTimeLine extends FrameLayout {
                 .setParentColor(PARENT_COLOR)
                 .setParentSize(PARENT_SIZE)
                 .setChildColor(CHILD_COLOR)
-                .setChildSize(CHILD_SIZE);
+                .setChildSize(CHILD_SIZE)
+                .setShowToggle(SHOW_TOGGLE);
         mConfig = mBuilder.build();
 
         mContent = new ListView(context);
@@ -104,7 +111,7 @@ public class FreeTimeLine extends FrameLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
         if (getChildCount() > 1) {
-            throw new IllegalStateException("FreeTimeLine can't have any child in xml.");
+            throw new IllegalStateException("FreeTimeLine can't have any child added manually.");
         }
     }
 
@@ -123,6 +130,16 @@ public class FreeTimeLine extends FrameLayout {
         });
     }
 
+    public FreeTimeLineConfig getConfig() {
+        return mConfig;
+    }
+
+    public void setConfig(FreeTimeLineConfig config) {
+        mConfig = config;
+        if (mAdapter != null) {
+            mAdapter.notifyDataSetChanged();
+        }
+    }
 
     public void setTopType(int type) {
         if (mAdapter != null && TOP_TYPE != type) {
@@ -219,6 +236,13 @@ public class FreeTimeLine extends FrameLayout {
     public void setChildSize(float size) {
         if (mAdapter != null && CHILD_SIZE != size) {
             mConfig = mBuilder.setChildSize(size).build();
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void setShowToggle(boolean show) {
+        if (mAdapter != null && SHOW_TOGGLE != show) {
+            mConfig = mBuilder.setShowToggle(show).build();
             mAdapter.notifyDataSetChanged();
         }
     }

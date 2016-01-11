@@ -35,8 +35,7 @@ public class FreeTimeLineAdapter extends BaseAdapter {
         mConfig = config;
         opened = new boolean[mElements.size()];
         SHOW_LEFT = showLeft();
-        // TODO: 16/1/7 ?
-        SHOW_TOGGLE = true;
+        SHOW_TOGGLE = mConfig.SHOW_TOGGLE;
     }
 
     @Override
