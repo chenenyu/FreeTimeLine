@@ -3,7 +3,7 @@
 *Beautiful and powerful time-line component for android.*   
 
 ### Android Studio:  
-`compile 'com.chenenyu.freetimeline:ftl:1.0'`  
+`compile 'com.chenenyu.freetimeline:ftl:2.1'`
 ### Eclipse:  
 呵呵...  
 
