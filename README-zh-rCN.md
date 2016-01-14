@@ -13,24 +13,25 @@
 ### Eclipse:  
 呵呵...  
 
-## Avaliable attrs:
-* ------v1.0------
-* top_type  第一个结点的样式
-* node_type  中间节点的样式
-* bottom_type  最后一个结点的样式
-* line_color  轴线颜色
-* solid_color  实心圆颜色
-* hollow_color  空心圆颜色
-* sucker_color  吸盘的样色
-* toggle_color  折叠按钮的颜色
-* ------v2.1------
-* left_color  左侧文本的颜色
-* left_size  左侧文本的大小
-* parent_color  中间标题文本的颜色
-* parent_size  中间标题文本的大小
-* child_color  中间副文本的颜色
-* child_size  中间副文本的大小
-* show_toggle  是否展示折叠按钮
+## 可用属性:
+
+|属性|类型|描述|
+|:---:|:---:|:---:|
+|top_type|enum|顶部结点的样式(sucker/solid/hollow)|
+|node_type|enum|中间节点的样式(solid/hollow)|
+|bottom_type|enum|底部结点的样式(solid/hollow)|
+|line_color|color|轴线的颜色|
+|solid_color|color|实心圆的颜色|
+|hollow_color|color|空心圆的颜色|
+|sucker_color|color|吸盘(sucker)样式的颜色|
+|toggle_color|color|折叠按钮的颜色|
+|left_color|color|左侧文本的颜色|
+|left_size|dimension|左侧文本的大小(默认13sp)|
+|parent_color|color|中间标题文本的颜色|
+|parent_size|dimension|中间标题文本的大小(默认14sp)|
+|child_color|color|中间详细文本的颜色|
+|child_size|dimension|中间详细文本的大小(默认12sp)|
+|show_toggle|boolean|是否显示折叠按钮|
 
 上述所有属性都可在xml或者代码中配置
 
@@ -56,11 +57,11 @@ xml中:
 
 然后设置内容元素:  
 
-`ftl.setElements(List<FreeTimeLineElement>);`  
+`ftl.setElements(List<FreeTimeLineElement elements>);`  
 
 同样可以在代码中改变配置:
 
-`ftl.setConfig(FreeTimeLineConfig);`
+`ftl.setConfig(FreeTimeLineConfig config);`
 
 
 **欢迎提交代码、bug和讨论 : )**

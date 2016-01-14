@@ -13,23 +13,24 @@
 Hehe...  
 
 ## Avaliable attrs:
-* ------v1.0------
-* top_type
-* node_type
-* bottom_type
-* line_color
-* solid_color
-* hollow_color
-* sucker_color
-* toggle_color
-* ------v2.1------
-* left_color
-* left_size
-* parent_color
-* parent_size
-* child_color
-* child_size
-* show_toggle
+
+|attr|format|description|
+|:---:|:---:|:---:|
+|top_type|enum|Top type(sucker/solid/hollow)|
+|node_type|enum|Node type(solid/hollow)|
+|bottom_type|enum|Bottom type(solid/hollow)|
+|line_color|color|Vertival axes color|
+|solid_color|color|Solid circle color|
+|hollow_color|color|Hollow circle color|
+|sucker_color|color|Sucker type color|
+|toggle_color|color|Toggle button color|
+|left_color|color|Left text color|
+|left_size|dimension|Left text size(default 13sp)|
+|parent_color|color|Title text color|
+|parent_size|dimension|Title text size(default 14sp)|
+|child_color|color|Detail text color|
+|child_size|dimension|Detail text size(default 12sp)|
+|show_toggle|boolean|Whether to show toggle button|
 
 All of above can be configed in xml or code.
 
